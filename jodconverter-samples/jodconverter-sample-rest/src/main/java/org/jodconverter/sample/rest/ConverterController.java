@@ -234,7 +234,9 @@ public class ConverterController {
               + FileUtils.getBaseName(inputFile.getOriginalFilename())
               + "."
               + targetFormat.getExtension());
-      return ResponseEntity.ok().headers(headers).body(Base64.getEncoder().encodeToString(baos.toByteArray()));
+      return ResponseEntity.ok()
+          .headers(headers)
+          .body(Base64.getEncoder().encodeToString(baos.toByteArray()));
 
     } catch (OfficeException | IOException ex) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
