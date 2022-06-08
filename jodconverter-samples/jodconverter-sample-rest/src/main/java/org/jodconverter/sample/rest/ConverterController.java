@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
+import java.util.Base64;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -234,7 +234,7 @@ public class ConverterController {
               + FileUtils.getBaseName(inputFile.getOriginalFilename())
               + "."
               + targetFormat.getExtension());
-      return ResponseEntity.ok().headers(headers).body(baos.toByteArray());
+      return ResponseEntity.ok().headers(headers).body(Base64.getEncoder().encodeToString(baos.toByteArray()));
 
     } catch (OfficeException | IOException ex) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
